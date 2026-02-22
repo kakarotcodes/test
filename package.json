@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "aos": "^2.3.4",
+    "embla-carousel-autoplay": "^8.6.0",
+    "embla-carousel-react": "^8.6.0",
     "lightgallery": "^2.9.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"

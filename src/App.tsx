@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import AOS from "aos";
 import SakuraCanvas from "./components/SakuraCanvas";
-import CenteredImage from "./components/CenteredImage";
 import TimelineSection from "./components/TimelineSection";
+import HallOfFameCarousel from "./components/HallOfFameCarousel";
 import { allImages } from "./assets/images";
 import "./App.css";
 
@@ -53,21 +53,33 @@ export default function App() {
     AOS.init({ duration: 800, once: true });
   }, []);
 
-
   // Live age counter like the demo (adjust date as needed)
   const age = useAgeCounter("2000-01-01T00:00:00");
 
-  // Horizontal scroller controls
-  const scrollerRef = useRef<HTMLDivElement | null>(null);
-  const scrollBy = (dir: number) => {
-    const scroller = scrollerRef.current;
-    if (!scroller) return;
-    const card = scroller.querySelector<HTMLElement>(".snap-center");
-    if (!card) return;
-    const gap = parseInt(getComputedStyle(scroller).gap || "16", 10);
-    const offset = card.offsetWidth + gap;
-    scroller.scrollBy({ left: dir * offset, behavior: "smooth" });
-  };
+  // Carousel items - duplicated for seamless loop
+  const carouselItems = [
+    { img: allImages[6], title: "Title 1", caption: "Caption 1" },
+    { img: allImages[9], title: "Title 2", caption: "Caption 2" },
+    { img: allImages[11], title: "Title 3", caption: "Caption 3" },
+    { img: allImages[13], title: "Title 4", caption: "Caption 4" },
+    { img: allImages[14], title: "Title 5", caption: "Caption 5" },
+    { img: allImages[16], title: "Title 6", caption: "Caption 6" },
+    { img: allImages[18], title: "Title 6", caption: "Caption 6" },
+    { img: allImages[19], title: "Title 6", caption: "Caption 6" },
+    { img: allImages[21], title: "Title 8", caption: "Caption 8" },
+    { img: allImages[22], title: "Title 9", caption: "Caption 9" },
+    { img: allImages[23], title: "Title 10", caption: "Caption 10" },
+    { img: allImages[25], title: "Title 9", caption: "Caption 9" },
+    { img: allImages[26], title: "Title 10", caption: "Caption 10" },
+    { img: allImages[27], title: "Title 11", caption: "Caption 11" },
+    { img: allImages[28], title: "Title 12", caption: "Caption 12" },
+    { img: allImages[29], title: "Title 13", caption: "Caption 13" },
+    { img: allImages[30], title: "Title 14", caption: "Caption 14" },
+    { img: allImages[31], title: "Title 15", caption: "Caption 15" },
+    { img: allImages[32], title: "Title 16", caption: "Caption 16" },
+    { img: allImages[33], title: "Title 17", caption: "Caption 17" },
+    { img: allImages[34], title: "Title 18", caption: "Caption 18" },
+  ];
 
   return (
     <div className="relative min-h-screen text-[#2c3e50]">
@@ -84,10 +96,14 @@ export default function App() {
           data-aos-duration="1500"
         >
           <h1 className="text-5xl md:text-7xl font-anime drop-shadow-lg">
-            Happy Birthday to my preciousest, cutest, prettiest lil princess
+            Happy Birthday to my preciousest, cutest, prettiest lil princess 🎂
           </h1>
           <div className="mt-6 text-2xl font-semibold tracking-widest leading-relaxed">
             i love you so fucking much!
+            <br />
+            <span className="text-sm">
+              (did you really think I'd forget?)
+            </span>
             {/* {age.years}y {age.months}m {age.days}d
             <br />
             {age.hours}h {age.minutes}m {age.seconds}s
@@ -120,7 +136,7 @@ export default function App() {
               all the success and joy you deserve and more.. I'll always be here
               cheering my baby on!
             </p>
-            <p className="text-right mt-8">With love, Saif</p>
+            <p className="text-right mt-8">With love, your lil baby</p>
           </div>
         </section>
 
@@ -134,8 +150,8 @@ export default function App() {
                 allImages[0] || "https://placehold.co/800x1066?text=Photo+1",
             },
             {
-              title: "Holy Moly!! Are you for real??",
-              body: "I've lost count of how many times I've seen this one",
+              title: "Holy Moly!!",
+              body: "I remember looking at this and saying Whoaa.. what a babe!!",
               imgSrc:
                 allImages[1] || "https://placehold.co/800x1066?text=Photo+2",
             },
@@ -163,7 +179,7 @@ export default function App() {
               imgSrc:
                 allImages[4] || "https://placehold.co/800x1066?text=Photo+4",
             },
-             {
+            {
               title: "That dimple",
               body: "Excuse me.. can I bite your cheeks?",
               imgSrc:
@@ -200,92 +216,20 @@ export default function App() {
                 allImages[17] || "https://placehold.co/800x1066?text=Photo+17",
               rotate: 270,
             },
+            {
+              title: "Delicious 🤤",
+              body: "Baby.. we're definitely making out in this",
+              imgSrc:
+                allImages[20] || "https://placehold.co/800x1066?text=Photo+20",
+            },
           ]}
         />
 
-        {/* Hall of Fame (horizontal cards) */}
-        <section className="my-16 md:my-24">
-          <h2
-            className="text-4xl md:text-5xl font-anime text-center mb-12"
-            data-aos="fade-up"
-          >
-            Hall of Fame
-          </h2>
-          <div className="relative">
-            <button
-              onClick={() => scrollBy(-1)}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white rounded-full p-2 shadow-md transition-opacity opacity-0 md:opacity-100"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 text-sakura"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-            </button>
-            <button
-              onClick={() => scrollBy(1)}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white rounded-full p-2 shadow-md transition-opacity opacity-0 md:opacity-100"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 text-sakura"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </button>
-
-            <div
-              ref={scrollerRef}
-              className="scrollbar-hide overflow-x-auto snap-x snap-mandatory flex gap-6 px-8"
-            >
-              {[1, 2, 3, 4, 5, 6].map((i) => (
-                <div
-                  key={i}
-                  className="snap-center flex-shrink-0 w-10/12 sm:w-1/2 md:w-1/3 lg:w-1/4"
-                  data-aos="fade-up"
-                  style={{ transitionDelay: `${i}00ms` }}
-                >
-                  <div className="group bg-white p-6 rounded-lg shadow-lg text-center h-full">
-                    <CenteredImage
-                      src={`https://placehold.co/800x1066?text=Photo+${i}`}
-                      alt={`Photo ${i}`}
-                      ratio="9 / 16"
-                      fit="cover"
-                      className="mb-4 border-4 border-white bg-white shadow-sm transform-gpu transition-transform group-hover:scale-105"
-                    />
-                    <h3 className="text-2xl font-anime text-sakura">
-                      Photo {i}
-                    </h3>
-                    <p className="mt-2">Caption {i}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
+        {/* Hall of Fame (Embla carousel with autoplay) */}
+        <HallOfFameCarousel items={carouselItems} />
       </main>
 
       <footer className="bg-navy text-white p-8 text-center">
-        <p>Enjoy your day to the fullest.</p>
-        <p className="text-sm opacity-70 mt-2">Hope you liked it...</p>
       </footer>
     </div>
   );
