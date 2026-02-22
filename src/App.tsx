@@ -1,10 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import AOS from "aos";
-import lightGallery from "lightgallery";
 import SakuraCanvas from "./components/SakuraCanvas";
 import CenteredImage from "./components/CenteredImage";
 import TimelineSection from "./components/TimelineSection";
-import { galleryImages as gallerySrcs, allImages } from "./assets/images";
+import { allImages } from "./assets/images";
 import "./App.css";
 
 function useAgeCounter(birthIso: string) {
@@ -54,18 +53,6 @@ export default function App() {
     AOS.init({ duration: 800, once: true });
   }, []);
 
-  // Setup LightGallery on a grid container
-  const galleryRef = useRef<HTMLDivElement | null>(null);
-  useEffect(() => {
-    if (!galleryRef.current) return;
-    const lg = lightGallery(galleryRef.current, {
-      speed: 500,
-      download: false,
-    });
-    return () => {
-      lg.destroy(true);
-    };
-  }, []);
 
   // Live age counter like the demo (adjust date as needed)
   const age = useAgeCounter("2000-01-01T00:00:00");
@@ -211,6 +198,7 @@ export default function App() {
               body: "I can't tell the thoughts I had when I saw this picture for the first time..",
               imgSrc:
                 allImages[17] || "https://placehold.co/800x1066?text=Photo+17",
+              rotate: 270,
             },
           ]}
         />
@@ -293,46 +281,6 @@ export default function App() {
           </div>
         </section>
 
-        {/* Gallery with LightGallery */}
-        <section className="my-16 md:my-24">
-          <h2
-            className="text-4xl md:text-5xl font-anime text-center mb-12"
-            data-aos="fade-up"
-          >
-            The Collection
-          </h2>
-          <div
-            ref={galleryRef}
-            id="lightgallery"
-            className="grid grid-cols-2 md:grid-cols-4 gap-4"
-          >
-            {(gallerySrcs.length
-              ? gallerySrcs
-              : Array.from({ length: 8 }).map(
-                  (_, i) =>
-                    `https://placehold.co/1200x800?text=Memory+${i + 1}`,
-                )
-            ).map((href, idx) => {
-              const thumb = href;
-              return (
-                <a
-                  key={idx}
-                  href={href}
-                  data-aos="zoom-in"
-                  className="group block w-full"
-                >
-                  <CenteredImage
-                    src={thumb}
-                    alt={`Memory ${idx + 1}`}
-                    ratio="9 / 16"
-                    fit="cover"
-                    className="rounded-lg shadow-lg border-4 border-white bg-white transform-gpu transition-transform group-hover:scale-105"
-                  />
-                </a>
-              );
-            })}
-          </div>
-        </section>
       </main>
 
       <footer className="bg-navy text-white p-8 text-center">

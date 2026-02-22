@@ -12,6 +12,7 @@ type Props = {
   srcSet?: string
   heightClass?: string // Tailwind classes for fixed height, e.g. 'h-48 md:h-64'
   widthClass?: string // Tailwind classes for width, defaults to w-full
+  rotate?: number // CSS rotate transform in degrees
 }
 
 export default function CenteredImage({
@@ -26,6 +27,7 @@ export default function CenteredImage({
   srcSet,
   heightClass = '',
   widthClass = 'w-full',
+  rotate,
 }: Props) {
   return (
     <div
@@ -38,7 +40,10 @@ export default function CenteredImage({
         sizes={sizes}
         alt={alt}
         className={`absolute inset-0 w-full h-full object-${fit} ${imgClassName}`}
-        style={{ objectPosition: position }}
+        style={{
+          objectPosition: position,
+          ...(rotate ? { transform: `rotate(${rotate}deg)` } : {}),
+        }}
         loading="lazy"
         decoding="async"
       />

@@ -5,6 +5,7 @@ type TimelineItem = {
   body: string
   imgSrc: string
   alt?: string
+  rotate?: number
 }
 
 type Props = {
@@ -32,6 +33,7 @@ export default function TimelineSection({ items }: Props) {
                   ratio="9 / 16"
                   fit="cover"
                   className="border-4 border-white bg-white shadow-xl"
+                  rotate={item.rotate}
                 />
               </div>
               <div className={`text-center ${textAlign}`}>
