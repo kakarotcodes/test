@@ -4,10 +4,7 @@ import lightGallery from "lightgallery";
 import SakuraCanvas from "./components/SakuraCanvas";
 import CenteredImage from "./components/CenteredImage";
 import TimelineSection from "./components/TimelineSection";
-import {
-  galleryImages as gallerySrcs,
-  timelineImages as timelineSrcs,
-} from "./assets/images";
+import { galleryImages as gallerySrcs, allImages } from "./assets/images";
 import "./App.css";
 
 function useAgeCounter(birthIso: string) {
@@ -142,31 +139,80 @@ export default function App() {
 
         {/* Timeline (alternating layout) */}
         <TimelineSection
-          items={(timelineSrcs.length
-            ? timelineSrcs
-            : [
-                "https://placehold.co/800x1066?text=Photo+1",
-                "https://placehold.co/800x1066?text=Photo+2",
-                "https://placehold.co/800x1066?text=Photo+3",
-                "https://placehold.co/800x1066?text=Photo+4",
-              ]
-          ).map((src, i) => ({
-            title:
-              [
-                "The first time I saw you",
-                "Holy Moly!! Are you for real??",
-                "This suit.. ufff 🤌",
-                "Party time!!",
-              ][i] || `Part ${i + 1}`,
-            body:
-              [
-                "I was awestruck... itni pyaari ladkiya bhi hoti hai kahi?",
-                "I've lost count of how many times I've seen this one",
-                "Traditional >>>",
-                "Just look at that smile!!",
-              ][i] || "Your story goes here.",
-            imgSrc: src,
-          }))}
+          items={[
+            {
+              title: "The first time I saw you",
+              body: "I was awestruck... itni pyaari ladkiya bhi hoti hai kahi?",
+              imgSrc:
+                allImages[0] || "https://placehold.co/800x1066?text=Photo+1",
+            },
+            {
+              title: "Holy Moly!! Are you for real??",
+              body: "I've lost count of how many times I've seen this one",
+              imgSrc:
+                allImages[1] || "https://placehold.co/800x1066?text=Photo+2",
+            },
+            {
+              title: "This suit.. ufff 🤌",
+              body: "Traditional >>>",
+              imgSrc:
+                allImages[2] || "https://placehold.co/800x1066?text=Photo+3",
+            },
+            {
+              title: "Party time!!",
+              body: "Just look at that smile!!",
+              imgSrc:
+                allImages[3] || "https://placehold.co/800x1066?text=Photo+4",
+            },
+            {
+              title: "You wear glasses?!",
+              body: "Glasses never looked this good on anyone",
+              imgSrc:
+                allImages[24] || "https://placehold.co/800x1066?text=Photo+24",
+            },
+            {
+              title: "I felt so shy looking at you here",
+              body: "Red really is your color",
+              imgSrc:
+                allImages[4] || "https://placehold.co/800x1066?text=Photo+4",
+            },
+             {
+              title: "That dimple",
+              body: "Excuse me.. can I bite your cheeks?",
+              imgSrc:
+                allImages[5] || "https://placehold.co/800x1066?text=Photo+5",
+            },
+            {
+              title: "Gorgeous",
+              body: "Yahan pe mujhe pyaar hogya tha tumse..",
+              imgSrc:
+                allImages[7] || "https://placehold.co/800x1066?text=Photo+7",
+            },
+            {
+              title: "Hehehe.. my favourite",
+              body: "Do I really need to say anything??",
+              imgSrc:
+                allImages[8] || "https://placehold.co/800x1066?text=Photo+8",
+            },
+            {
+              title: "THIS black sweater..",
+              body: "You need to click more in this pls",
+              imgSrc:
+                allImages[10] || "https://placehold.co/800x1066?text=Photo+10",
+            },
+            {
+              title: "So so pretty",
+              body: "I love this dress",
+              imgSrc:
+                allImages[12] || "https://placehold.co/800x1066?text=Photo+12",
+            },
+            {
+              title: "Hot hot hot!!",
+              body: "I can't tell the thoughts I had when I saw this picture for the first time..",
+              imgSrc:
+                allImages[17] || "https://placehold.co/800x1066?text=Photo+17",
+            },
+          ]}
         />
 
         {/* Hall of Fame (horizontal cards) */}
