@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+/* Custom styles for the demo look */
+html, body {
+  overflow-x: hidden;
+}
+body {
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  background-color: #F0F8FF; /* Alice Blue */
+  color: #2c3e50; /* Navy/Slate */
+}
+
+/* Matches the demo utility classes */
+.font-anime {
+  font-family: 'Mochiy Pop One', sans-serif;
+}
+.text-sakura { color: #FFB7C5; }
+.bg-navy { background-color: #2c3e50; }
+
+/* Sakura canvas overlay */
+#sakura-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Optional: hide scrollbars for horizontal scrollers */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
