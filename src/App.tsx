@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect } from "react";
 import AOS from "aos";
 import SakuraCanvas from "./components/SakuraCanvas";
 import TimelineSection from "./components/TimelineSection";
@@ -6,57 +6,13 @@ import HallOfFameCarousel from "./components/HallOfFameCarousel";
 import { allImages } from "./assets/images";
 import "./App.css";
 
-function useAgeCounter(birthIso: string) {
-  const birthDate = useMemo(() => new Date(birthIso), [birthIso]);
-  const [now, setNow] = useState<Date>(new Date());
-  useEffect(() => {
-    const id = setInterval(() => setNow(new Date()), 1000);
-    return () => clearInterval(id);
-  }, []);
-  const diff = useMemo(() => {
-    let years = now.getFullYear() - birthDate.getFullYear();
-    let months = now.getMonth() - birthDate.getMonth();
-    let days = now.getDate() - birthDate.getDate();
-    let hours = now.getHours() - birthDate.getHours();
-    let minutes = now.getMinutes() - birthDate.getMinutes();
-    let seconds = now.getSeconds() - birthDate.getSeconds();
-
-    if (seconds < 0) {
-      seconds += 60;
-      minutes--;
-    }
-    if (minutes < 0) {
-      minutes += 60;
-      hours--;
-    }
-    if (hours < 0) {
-      hours += 24;
-      days--;
-    }
-    if (days < 0) {
-      const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-      days += prevMonth.getDate();
-      months--;
-    }
-    if (months < 0) {
-      months += 12;
-      years--;
-    }
-    return { years, months, days, hours, minutes, seconds };
-  }, [now, birthDate]);
-  return diff;
-}
-
 export default function App() {
   // Init AOS on mount
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
   }, []);
 
-  // Live age counter like the demo (adjust date as needed)
-  const age = useAgeCounter("2000-01-01T00:00:00");
-
-  // Carousel items - duplicated for seamless loop
+  // Carousel items
   const carouselItems = [
     { img: allImages[6], title: "Title 1", caption: "Caption 1" },
     { img: allImages[9], title: "Title 2", caption: "Caption 2" },

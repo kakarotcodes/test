@@ -13,15 +13,15 @@ export default function SakuraCanvas() {
     let raf = 0
 
     function resizeCanvas() {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
+      canvas!.width = window.innerWidth
+      canvas!.height = window.innerHeight
     }
     window.addEventListener('resize', resizeCanvas)
     resizeCanvas()
 
     function Petal(this: any) {
-      this.x = Math.random() * canvas.width
-      this.y = Math.random() * canvas.height * 2 - canvas.height
+      this.x = Math.random() * canvas!.width
+      this.y = Math.random() * canvas!.height * 2 - canvas!.height
       this.w = 25 + Math.random() * 15
       this.h = 20 + Math.random() * 10
       this.opacity = this.w / 40
@@ -32,7 +32,7 @@ export default function SakuraCanvas() {
     }
 
     Petal.prototype.draw = function () {
-      if (this.y > canvas.height || this.x > canvas.width) {
+      if (this.y > canvas!.height || this.x > canvas!.width) {
         this.x = -this.w
         this.y = Math.random() * canvas.height * 2 - canvas.height
         this.xSpeed = 1.5 + Math.random() * 2
@@ -78,7 +78,7 @@ export default function SakuraCanvas() {
     }
 
     function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      ctx.clearRect(0, 0, canvas!.width, canvas!.height)
       petals.forEach((p) => (p as any).update())
       raf = requestAnimationFrame(animate)
     }
