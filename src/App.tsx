@@ -96,14 +96,12 @@ export default function App() {
           data-aos-duration="1500"
         >
           <h1 className="text-5xl md:text-7xl font-anime drop-shadow-lg">
-            Happy Birthday to my preciousest, cutest, prettiest lil princess 🎂
+            Happy Birthday to my preciousest, cutest, prettiest, smartest lil princess 🎂
           </h1>
           <div className="mt-6 text-2xl font-semibold tracking-widest leading-relaxed">
             i love you so fucking much!
             <br />
-            <span className="text-sm">
-              (did you really think I'd forget?)
-            </span>
+            <span className="text-sm">(did you really think I'd forget?)</span>
             {/* {age.years}y {age.months}m {age.days}d
             <br />
             {age.hours}h {age.minutes}m {age.seconds}s
@@ -119,7 +117,7 @@ export default function App() {
           data-aos="fade-up"
         >
           <h2 className="text-4xl md:text-5xl font-anime text-sakura mb-8 drop-shadow-sm">
-            A Special Message For You
+            Happy Birthday Ishi!
           </h2>
           <div className="text-left text-lg leading-relaxed space-y-4 bg-white p-8 rounded-lg shadow-lg">
             <p>My Dearest Jaan,</p>
@@ -128,13 +126,6 @@ export default function App() {
               laughter, love, and all the things that make you smile. You
               deserve the world and more. Thank you for being the amazing person
               you are and for making me smile always.
-              <br />
-              <br />I may not always act that way but I am so so grateful to
-              have you in my life. I think about you all the time and look
-              forward to you annoying me all the time.. hehe. I love it when you
-              annoy me and call me yours. Never change meri jaan.. May you find
-              all the success and joy you deserve and more.. I'll always be here
-              cheering my baby on!
             </p>
             <p className="text-right mt-8">With love, your lil baby</p>
           </div>
@@ -227,10 +218,38 @@ export default function App() {
 
         {/* Hall of Fame (Embla carousel with autoplay) */}
         <HallOfFameCarousel items={carouselItems} />
+        <section
+          className="my-16 md:my-24 max-w-3xl mx-auto text-center"
+          data-aos="fade-up"
+        >
+          <h2 className="text-center text-4xl md:text-5xl font-anime text-sakura mb-8 drop-shadow-sm">
+            A Special Message For You
+          </h2>
+          <div className="text-left text-lg leading-relaxed space-y-4 bg-white p-8 rounded-lg shadow-lg">
+            <p>Meri Pukkuuu,</p>
+            <p>
+              I may not always act that way but I am so so grateful to have you
+              in my life. I think about you all the time and look forward to our
+              conversations everyday. I love it when you annoy me and call me
+              yours. 
+              <br />
+              <br />
+              You're too precious to me Ishi and I will cherish you as
+              long as I have you. 
+              <br />
+              <br />
+              I never imagined I'd meet someone as loving
+              and caring and gentle as you. Never change meri jaan.. May you
+              find all the success and joy you deserve and more.. I'll always be
+              here cheering my baby on!
+            </p>
+            <p className="text-right mt-8">I'll always be your lil baby</p>
+          </div>
+        </section>
       </main>
 
-      <footer className="bg-navy text-white p-8 text-center">
-      </footer>
+      {/* <footer className="bg-navy text-white p-8 text-center">
+      </footer> */}
     </div>
   );
 }
