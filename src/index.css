@@ -2,6 +2,8 @@
 
 /* Custom styles for the demo look */
 html, body {
+  margin: 0;
+  padding: 0;
   overflow-x: hidden;
 }
 body {

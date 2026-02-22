@@ -1,4 +1,3 @@
-import React from 'react'
 import CenteredImage from './CenteredImage'
 
 type TimelineItem = {
@@ -16,7 +15,7 @@ export default function TimelineSection({ items }: Props) {
   return (
     <section className="my-16 md:my-24">
       <h2 className="text-4xl md:text-5xl font-anime text-center mb-12" data-aos="fade-up">
-        Your Story Arc
+        You, through my eyes
       </h2>
       <div className="space-y-16">
         {items.map((item, idx) => {
