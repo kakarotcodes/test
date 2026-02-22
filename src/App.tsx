@@ -78,7 +78,7 @@ export default function App() {
           <div className="text-left text-lg leading-relaxed space-y-4 bg-white p-8 rounded-lg shadow-lg">
             <p>My Dearest Jaan,</p>
             <p>
-              A very Happy Birthday to you. May your day be filled with
+              A very Happy Birthday to you. I hope your day was filled with
               laughter, love, and all the things that make you smile. You
               deserve the world and more. Thank you for being the amazing person
               you are and for making me smile always.
